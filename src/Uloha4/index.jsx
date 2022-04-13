@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './carousel.css'
 
 // Tvoříš jednoduchou galerii, kde se jde klikáním
@@ -7,14 +7,13 @@ import './carousel.css'
 // Zadání 1:
 // Nachystej si adresy obrázků uvedené níže do pole.
 
-/*
-Adresy obrázků:
-https://source.unsplash.com/WLUHO9A_xik/880x500
-https://source.unsplash.com/DA1eGglMmlg/880x500
-https://source.unsplash.com/kTxL6le0Wgk/880x500
-https://source.unsplash.com/7go5UASxmDY/880x500
-https://source.unsplash.com/YmATDIFsCmQ/880x500
-*/
+const diceUrls = [
+"https://source.unsplash.com/WLUHO9A_xik/880x500",
+"https://source.unsplash.com/DA1eGglMmlg/880x500",
+"https://source.unsplash.com/kTxL6le0Wgk/880x500",
+"https://source.unsplash.com/7go5UASxmDY/880x500",
+"https://source.unsplash.com/YmATDIFsCmQ/880x500"
+];
 
 // Zadání 2:
 // Přidej komponentě stavovou proměnnou, ve které bude index
@@ -34,19 +33,28 @@ https://source.unsplash.com/YmATDIFsCmQ/880x500
 
 
 const Uloha4 = () => {
+	const [index, setIndex] = useState(0);
+
+
 	return (
 		<div className="carousel">
-			<button className="carousel__predchozi" aria-label="předchozí">
+			<button className="carousel__predchozi" aria-label="předchozí"
+			disabled={(index === 0)}
+			onClick={ ()=>{setIndex(index-1)}}
+			>
 				←
 			</button>
 			<div className="carousel__media">
 				<img
 					className="carousel__image"
-					src="https://source.unsplash.com/7go5UASxmDY/880x500"
+					src={diceUrls[index]}
 					alt=""
 				/>
 			</div>
-			<button className="carousel__dalsi" aria-label="další">
+			<button className="carousel__dalsi" aria-label="další"
+			onClick={ ()=>{setIndex(index+1)}}
+			disabled={(index === diceUrls.length-1)}
+			>
 				→
 			</button>
 		</div>

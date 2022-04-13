@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './hamburger.css'
 
 // Tvoříš rozbalovací hamburger menu.
@@ -18,13 +18,17 @@ import './hamburger.css'
 // Pro otevřené přidej navíc `hamburger--otevrene`.
 
 const Uloha5 = () => {
+	const [otevreno, setOtevreno] = useState(false);
 	return (
 		<>
-			<button className="hamburger" aria-label="menu">
+			<button className={"hamburger " + (otevreno && `hamburger--otevrene`)}
+			aria-label="menu"
+			onClick={()=>{setOtevreno(!otevreno)}}>
 				<span></span>
 				<span></span>
 				<span></span>
 			</button>
+			{ otevreno && (
 			<ul>
 				<li>
 					<a href="#o-nas">O nás</a>
@@ -39,6 +43,7 @@ const Uloha5 = () => {
 					<a href="#cenik">Ceník</a>
 				</li>
 			</ul>
+			)}
 		</>
 	)
 }

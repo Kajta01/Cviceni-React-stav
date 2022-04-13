@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Tvoříš komponentu, která zobrazuje vysoce přesnou předpověď
 // počasí v Brně.
@@ -13,11 +13,16 @@ import React from 'react'
 // Po kliknutí na tlačítko změň `možná` na `ano`, `ano` na `ne`,
 // případně `ne` na `možná`.
 
+
+
 const Uloha8 = () => {
+	const [stav, setStav] = useState(`možná`);
 	return (
 		<>
-			<h3>Prší v Brně: ano/ne/možná</h3>
-			<button>změnit</button>
+			<h3>Prší v Brně: {stav}</h3>
+			<button
+			onClick={()=>{stav === `možná`?setStav("ano"):stav === "ano"?setStav("ne"):setStav("možná");}}
+			>změnit</button>
 		</>
 	)
 }
